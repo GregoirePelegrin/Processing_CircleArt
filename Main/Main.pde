@@ -12,7 +12,7 @@ void setup(){
     frameRate(2);
 
     disks = new ArrayList<Disk>();
-    nbDisks = 2000;
+    nbDisks = 100;
 
     for(int i=0; i<nbDisks; i++)
         disks.add(new Disk(new Point(random(width/2+2, width-4), random(5, height-5))));
@@ -27,6 +27,15 @@ void draw(){
         disk.grow();
         disk.display();
     }
+    Disk disk = new Disk(new Point(random(width/2+2, width-4), random(5, height-5)));
+    int counter = 0;
+    while(counter < 10){
+        if(!disk.collide()){
+            disks.add(disk);
+            counter++;
+        }
+        disk = new Disk(new Point(random(width/2+2, width-4), random(5, height-5)));
+    }
 }
 
 void circle(Point p, int r){
@@ -40,4 +49,8 @@ color getColor(Point p){
     if(temp > photo.width*photo.height-1)
         temp = photo.width*photo.height-1;
     return photo.pixels[temp];
+}
+void mousePressed() {
+    if(mouseButton == LEFT)
+        noLoop();
 }
