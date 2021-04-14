@@ -14,7 +14,7 @@ class Disk{
 
     boolean collide(){
         this.radius++;
-        if(this.center.posX - this.radius < 0 || this.center.posX + this.radius > width || this.center.posY - this.radius < 0 || this.center.posY + this.radius > height){
+        if(this.center.posX - this.radius < width/2 + 2 || this.center.posX + this.radius > width-4 || this.center.posY - this.radius < 5 || this.center.posY + this.radius > height-5){
             this.radius--;
             return true;
         }
@@ -27,6 +27,7 @@ class Disk{
         return false;
     }
     void display(){
+        fill(this.col);
         circle(this.center, this.radius);
     }
     void grow(){
